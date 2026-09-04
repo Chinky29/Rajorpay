@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import { config } from './config/env.js';
@@ -17,8 +18,9 @@ import notificationRoutes from './routes/notification.routes.js';
 
 const app = express();
 
-// Security Headers
+// Security & Performance Middlewares
 app.use(helmet());
+app.use(compression());
 
 // CORS Configuration
 const allowedOrigins = [
@@ -31,11 +33,11 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps or curl/Postman)
+      // Allow requests with no origin (like mobile apps, curl, or Postman)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(null, true); // Permissive in dev, or specify origin
+        callback(new Error('Not allowed by CORS'));
       }
     },
     credentials: true,
