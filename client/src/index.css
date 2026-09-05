@@ -2,27 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-ink-950: #0A0C10;
+  --color-ink-900: #0F1319;
+  --color-ink-850: #121620;
+  --color-ink-800: #171B24;
+  --color-ink-700: #1E232F;
+  --color-ink-600: #262B38;
+  --color-ink-border: #262B38;
+  
+  --color-brass-200: #EBDCB8;
+  --color-brass-300: #DFC594;
+  --color-brass-400: #D2AE70;
+  --color-brass-500: #C9A25D;
+  --color-brass-600: #B08842;
+  --color-brass-700: #8F6C31;
+  
+  --color-success: #3FA772;
+  --color-success-soft: rgba(63, 167, 114, 0.12);
+  --color-danger: #C4544A;
+  --color-danger-soft: rgba(196, 84, 74, 0.12);
+  --color-warn: #C97A3D;
+  --color-warn-soft: rgba(201, 122, 61, 0.12);
+  --color-info: #4E8FC4;
+  --color-info-soft: rgba(78, 143, 196, 0.12);
+}
+
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 selection:bg-brand-500/30 selection:text-brand-200;
+    background-color: #0A0C10;
+    color: #f1f5f9;
+  }
+  ::selection {
+    background-color: rgba(201, 162, 93, 0.25);
+    color: #EBDCB8;
   }
 }
 
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-feature-settings: 'tnum' 1, 'ss01' 1, 'dlig' 0, 'liga' 0;
+    font-variant-ligatures: none;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .brass-glow {
+    box-shadow: 0 0 25px -5px rgba(201, 162, 93, 0.2);
+  }
+  .brass-glow-sm {
+    box-shadow: 0 0 15px -3px rgba(201, 162, 93, 0.15);
+  }
+  .card-hover {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-hover:hover {
+    border-color: rgba(201, 162, 93, 0.35);
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px rgba(201, 162, 93, 0.08);
+    transform: translateY(-1px);
+  }
+}
+
+/* Fallback helper classes to guarantee brass & ledger styling */
+.bg-brass-500 { background-color: #C9A25D !important; }
+.hover\:bg-brass-400:hover { background-color: #D2AE70 !important; }
+.text-brass-400 { color: #D2AE70 !important; }
+.text-brass-300 { color: #DFC594 !important; }
+.text-brass-500 { color: #C9A25D !important; }
+.text-ink-950 { color: #0A0C10 !important; }
+.border-brass-500 { border-color: #C9A25D !important; }
+
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #0A0C10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #1E232F;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #262B38;
 }

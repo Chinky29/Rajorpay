@@ -9,7 +9,6 @@ import { formatCurrency, formatDateShort } from '../utils/formatters';
 import {
   Repeat,
   Plus,
-  Search,
   DollarSign,
   Users,
   Calendar,
@@ -111,7 +110,7 @@ export default function Subscriptions() {
       accessor: 'customer',
       render: (s) => (
         <div>
-          <div className="font-semibold text-white">{s.customer?.name || 'Customer'}</div>
+          <div className="font-medium text-white">{s.customer?.name || 'Customer'}</div>
           <div className="text-xs text-slate-400">{s.customer?.email}</div>
         </div>
       ),
@@ -120,17 +119,17 @@ export default function Subscriptions() {
       header: 'Plan',
       accessor: 'plan',
       render: (s) => (
-        <span className="font-bold text-white text-xs bg-brand-500/10 text-brand-300 border border-brand-500/20 px-2.5 py-1 rounded-lg">
-          {s.plan} Tier
+        <span className="font-medium text-xs bg-brass-500/10 text-brass-400 border border-brass-500/20 px-2.5 py-1 rounded-lg">
+          {s.plan} tier
         </span>
       ),
     },
     {
-      header: 'Recurring Amount',
+      header: 'Recurring amount',
       accessor: 'amount',
       render: (s) => (
         <div>
-          <span className="font-bold text-white font-mono text-sm">
+          <span className="font-semibold text-white tabular">
             {formatCurrency(s.amount, s.currency)}
           </span>
           <span className="text-[11px] text-slate-400 ml-1">/{s.interval}</span>
@@ -138,7 +137,7 @@ export default function Subscriptions() {
       ),
     },
     {
-      header: 'Next Billing Cycle',
+      header: 'Next billing cycle',
       accessor: 'currentPeriodEnd',
       render: (s) => (
         <span className="text-xs text-slate-400 font-mono">
@@ -159,8 +158,8 @@ export default function Subscriptions() {
           {s.status === 'active' && (
             <button
               onClick={() => handleStatusChange(s._id, 'paused')}
-              className="p-1.5 rounded-lg text-amber-400 hover:bg-amber-500/10 transition"
-              title="Pause Subscription"
+              className="p-1.5 rounded-lg text-warn hover:bg-warn-soft transition"
+              title="Pause subscription"
             >
               <PauseCircle className="w-4 h-4" />
             </button>
@@ -168,8 +167,8 @@ export default function Subscriptions() {
           {s.status === 'paused' && (
             <button
               onClick={() => handleStatusChange(s._id, 'active')}
-              className="p-1.5 rounded-lg text-emerald-400 hover:bg-emerald-500/10 transition"
-              title="Resume Subscription"
+              className="p-1.5 rounded-lg text-success hover:bg-success-soft transition"
+              title="Resume subscription"
             >
               <PlayCircle className="w-4 h-4" />
             </button>
@@ -177,8 +176,8 @@ export default function Subscriptions() {
           {s.status !== 'canceled' && (
             <button
               onClick={() => handleStatusChange(s._id, 'canceled')}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition"
-              title="Cancel Subscription"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-danger hover:bg-danger-soft transition"
+              title="Cancel subscription"
             >
               <XCircle className="w-4 h-4" />
             </button>
@@ -192,45 +191,53 @@ export default function Subscriptions() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Recurring Subscriptions</h1>
+          <h1 className="text-2xl font-bold text-white tracking-tight font-display">Recurring subscriptions</h1>
           <p className="text-sm text-slate-400 mt-0.5">
             SaaS recurring billing schedules, MRR tracking, and renewal management
           </p>
         </div>
         <button
           onClick={handleOpenCreate}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 active:scale-95 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm active:scale-95 transition"
         >
           <Plus className="w-4 h-4" />
-          <span>New Subscription</span>
+          <span>New subscription</span>
         </button>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <StatCard
-          title="Monthly Recurring Revenue (MRR)"
-          value={formatCurrency(mrrTotal)}
-          subtitle="Normalized active recurring volume"
-          icon={DollarSign}
-          color="emerald"
-        />
+      <div className="rounded-xl border border-ink-border bg-ink-800 p-5 shadow-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:divide-x sm:divide-ink-border">
+          <div className="sm:pr-6">
+            <StatCard
+              title="Monthly recurring revenue (MRR)"
+              value={formatCurrency(mrrTotal)}
+              subtitle="Normalized active recurring volume"
+              icon={DollarSign}
+              color="brass"
+            />
+          </div>
 
-        <StatCard
-          title="Active Subscribers"
-          value={activeCount}
-          subtitle="Customer renewal rate 96%"
-          icon={Users}
-          color="brand"
-        />
+          <div className="sm:px-6 pt-4 sm:pt-0 border-t sm:border-t-0 border-ink-border">
+            <StatCard
+              title="Active subscribers"
+              value={activeCount}
+              subtitle="Customer renewal rate 96%"
+              icon={Users}
+              color="brass"
+            />
+          </div>
 
-        <StatCard
-          title="Renewal Interval"
-          value="30 Days"
-          subtitle="Automated billing cycle"
-          icon={Calendar}
-          color="sky"
-        />
+          <div className="sm:pl-6 pt-4 sm:pt-0 border-t sm:border-t-0 border-ink-border">
+            <StatCard
+              title="Renewal interval"
+              value="30 Days"
+              subtitle="Automated billing cycle"
+              icon={Calendar}
+              color="info"
+            />
+          </div>
+        </div>
       </div>
 
       {/* Filters */}
@@ -241,13 +248,13 @@ export default function Subscriptions() {
             setStatusFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2 text-sm text-slate-300 focus:border-brand-500 focus:outline-none"
+          className="rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2 text-sm text-slate-300 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
         >
-          <option value="">All Statuses</option>
+          <option value="">All statuses</option>
           <option value="active">Active</option>
           <option value="paused">Paused</option>
           <option value="canceled">Canceled</option>
-          <option value="past_due">Past Due</option>
+          <option value="past_due">Past due</option>
         </select>
 
         <select
@@ -256,9 +263,9 @@ export default function Subscriptions() {
             setPlanFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2 text-sm text-slate-300 focus:border-brand-500 focus:outline-none"
+          className="rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2 text-sm text-slate-300 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
         >
-          <option value="">All Plans</option>
+          <option value="">All plans</option>
           <option value="Basic">Basic</option>
           <option value="Pro">Pro</option>
           <option value="Enterprise">Enterprise</option>
@@ -280,18 +287,18 @@ export default function Subscriptions() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Create Customer Subscription"
+        title="Create customer subscription"
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Select Customer <span className="text-rose-400">*</span>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
+              Select customer <span className="text-danger">*</span>
             </label>
             <select
               value={formData.customerId}
               onChange={(e) => setFormData({ ...formData, customerId: e.target.value })}
               required
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             >
               {customers.map((c) => (
                 <option key={c._id} value={c._id}>
@@ -303,8 +310,8 @@ export default function Subscriptions() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Plan Tier
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Plan tier
               </label>
               <select
                 value={formData.plan}
@@ -313,7 +320,7 @@ export default function Subscriptions() {
                   const price = plan === 'Basic' ? 999 : plan === 'Pro' ? 4999 : 19999;
                   setFormData({ ...formData, plan, amount: price });
                 }}
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               >
                 <option value="Basic">Basic (₹999)</option>
                 <option value="Pro">Pro (₹4,999)</option>
@@ -322,13 +329,13 @@ export default function Subscriptions() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
                 Interval
               </label>
               <select
                 value={formData.interval}
                 onChange={(e) => setFormData({ ...formData, interval: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               >
                 <option value="monthly">Monthly</option>
                 <option value="yearly">Yearly</option>
@@ -337,8 +344,8 @@ export default function Subscriptions() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Custom Amount (₹ INR)
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
+              Custom amount (₹ INR)
             </label>
             <input
               type="number"
@@ -346,24 +353,24 @@ export default function Subscriptions() {
               required
               value={formData.amount}
               onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white font-mono focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white tabular font-mono focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-ink-border flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-white transition"
+              className="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting || customers.length === 0}
-              className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-md shadow-brand-600/25 transition disabled:opacity-50"
+              className="px-5 py-2.5 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm transition disabled:opacity-50"
             >
-              {submitting ? 'Creating...' : 'Start Subscription'}
+              {submitting ? 'Creating...' : 'Start subscription'}
             </button>
           </div>
         </form>

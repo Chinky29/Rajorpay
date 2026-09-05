@@ -13,7 +13,6 @@ import {
   Trash2,
   Tag,
   Repeat,
-  CheckCircle2,
 } from 'lucide-react';
 
 export default function Products() {
@@ -127,17 +126,17 @@ export default function Products() {
 
   const columns = [
     {
-      header: 'Product / Plan',
+      header: 'Product / plan',
       accessor: 'name',
       render: (p) => (
         <div>
-          <div className="font-semibold text-white">{p.name}</div>
+          <div className="font-medium text-white">{p.name}</div>
           <div className="text-xs text-slate-400 line-clamp-1 mt-0.5">{p.description || 'No description'}</div>
         </div>
       ),
     },
     {
-      header: 'SKU / Category',
+      header: 'SKU / category',
       accessor: 'category',
       render: (p) => (
         <div className="text-xs">
@@ -151,7 +150,7 @@ export default function Products() {
       accessor: 'price',
       render: (p) => (
         <div>
-          <span className="font-bold text-white font-mono text-sm">
+          <span className="font-semibold text-white tabular">
             {formatCurrency(p.price, p.currency)}
           </span>
           <span className="text-[11px] text-slate-400 ml-1">
@@ -165,7 +164,7 @@ export default function Products() {
       accessor: 'type',
       render: (p) => (
         <span className="inline-flex items-center gap-1 text-xs text-slate-300">
-          {p.type === 'recurring' ? <Repeat className="w-3.5 h-3.5 text-sky-400" /> : <Tag className="w-3.5 h-3.5 text-brand-400" />}
+          {p.type === 'recurring' ? <Repeat className="w-3.5 h-3.5 text-info" /> : <Tag className="w-3.5 h-3.5 text-brass-400" />}
           <span className="capitalize">{p.type.replace('_', ' ')}</span>
         </span>
       ),
@@ -182,15 +181,15 @@ export default function Products() {
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={() => handleOpenEdit(p)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
-            title="Edit Product"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-ink-700 transition"
+            title="Edit product"
           >
             <Edit2 className="w-4 h-4" />
           </button>
           <button
             onClick={() => handleDelete(p._id)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition"
-            title="Delete Product"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-danger hover:bg-danger-soft transition"
+            title="Delete product"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -203,17 +202,17 @@ export default function Products() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Products & Plans</h1>
+          <h1 className="text-2xl font-bold text-white tracking-tight font-display">Products & plans</h1>
           <p className="text-sm text-slate-400 mt-0.5">
             Manage your service tiers, pricing catalog, and subscription definitions
           </p>
         </div>
         <button
           onClick={handleOpenCreate}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 active:scale-95 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm active:scale-95 transition"
         >
           <Plus className="w-4 h-4" />
-          <span>New Product</span>
+          <span>New product</span>
         </button>
       </div>
 
@@ -229,7 +228,7 @@ export default function Products() {
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border border-ink-border bg-ink-800 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
           />
         </div>
 
@@ -239,9 +238,9 @@ export default function Products() {
             setStatusFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2 text-sm text-slate-300 focus:border-brand-500 focus:outline-none w-full sm:w-auto"
+          className="rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2 text-sm text-slate-300 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 w-full sm:w-auto"
         >
-          <option value="">All Statuses</option>
+          <option value="">All statuses</option>
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
           <option value="archived">Archived</option>
@@ -263,12 +262,12 @@ export default function Products() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingProduct ? 'Edit Product Catalog Item' : 'Add New Product or Plan'}
+        title={editingProduct ? 'Edit product catalog item' : 'Add new product or plan'}
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Product / Plan Name <span className="text-rose-400">*</span>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
+              Product / plan name <span className="text-danger">*</span>
             </label>
             <input
               type="text"
@@ -276,14 +275,14 @@ export default function Products() {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="e.g. Pro Suite Tier"
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Price (₹ INR) <span className="text-rose-400">*</span>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Price (₹ INR) <span className="text-danger">*</span>
               </label>
               <input
                 type="number"
@@ -292,41 +291,41 @@ export default function Products() {
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                 placeholder="4999"
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white font-mono focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white tabular font-mono focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Product SKU / Code
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Product SKU / code
               </label>
               <input
                 type="text"
                 value={formData.sku}
                 onChange={(e) => setFormData({ ...formData, sku: e.target.value.toUpperCase() })}
                 placeholder="SKU-PRO-01"
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white font-mono focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white font-mono focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Billing Model
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Billing model
               </label>
               <select
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               >
-                <option value="one_time">One-time Charge</option>
-                <option value="recurring">Recurring Subscription</option>
+                <option value="one_time">One-time charge</option>
+                <option value="recurring">Recurring subscription</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
                 Category
               </label>
               <input
@@ -334,13 +333,13 @@ export default function Products() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 placeholder="Subscriptions / Services"
-                className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+                className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
               Description
             </label>
             <textarea
@@ -348,24 +347,24 @@ export default function Products() {
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Features and entitlement details included with this product..."
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-ink-border flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-white transition"
+              className="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-md shadow-brand-600/25 transition disabled:opacity-50"
+              className="px-5 py-2.5 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm transition disabled:opacity-50"
             >
-              {submitting ? 'Saving...' : editingProduct ? 'Update Product' : 'Add to Catalog'}
+              {submitting ? 'Saving...' : editingProduct ? 'Update product' : 'Add to catalog'}
             </button>
           </div>
         </form>

@@ -95,7 +95,7 @@ export default function CheckoutModal({ isOpen, onClose, onSuccess, initialCusto
             contact: customer.phone,
           },
           theme: {
-            color: '#6366F1',
+            color: '#C9A25D',
           },
           handler: async function (response) {
             try {
@@ -151,25 +151,25 @@ export default function CheckoutModal({ isOpen, onClose, onSuccess, initialCusto
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Initiate Razorpay Checkout" maxWidth="max-w-lg">
+    <Modal isOpen={isOpen} onClose={onClose} title="Initiate checkout" maxWidth="max-w-lg">
       {fetching ? (
         <div className="py-8 text-center text-slate-400 font-mono text-sm">Loading catalog & customer data...</div>
       ) : (
         <form onSubmit={handleCheckout} className="space-y-4">
-          <div className="p-3 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-300 text-xs flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-brand-400 flex-shrink-0" />
-            <span>Razorpay Test Mode is active. No real funds will be charged.</span>
+          <div className="p-3 rounded-lg bg-brass-500/10 border border-brass-500/20 text-brass-300 text-xs flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-brass-400 flex-shrink-0" />
+            <span>Test mode is active. No real funds will be charged.</span>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Customer <span className="text-rose-400">*</span>
+            <label className="block text-xs text-slate-400 mb-1.5 font-medium">
+              Customer <span className="text-danger">*</span>
             </label>
             <select
               value={selectedCustomerId}
               onChange={(e) => setSelectedCustomerId(e.target.value)}
               required
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             >
               <option value="">Select a customer...</option>
               {customers.map((c) => (
@@ -181,15 +181,15 @@ export default function CheckoutModal({ isOpen, onClose, onSuccess, initialCusto
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Select Product (Optional)
+            <label className="block text-xs text-slate-400 mb-1.5 font-medium">
+              Select product (optional)
             </label>
             <select
               value={selectedProductId}
               onChange={(e) => setSelectedProductId(e.target.value)}
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             >
-              <option value="">Custom Amount / One-off Invoice</option>
+              <option value="">Custom amount / one-off invoice</option>
               {products.map((p) => (
                 <option key={p._id} value={p._id}>
                   {p.name} — ₹{p.price} ({p.type})
@@ -199,8 +199,8 @@ export default function CheckoutModal({ isOpen, onClose, onSuccess, initialCusto
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Amount (₹ INR) <span className="text-rose-400">*</span>
+            <label className="block text-xs text-slate-400 mb-1.5 font-medium">
+              Amount (₹ INR) <span className="text-danger">*</span>
             </label>
             <input
               type="number"
@@ -210,45 +210,45 @@ export default function CheckoutModal({ isOpen, onClose, onSuccess, initialCusto
               onChange={(e) => setAmount(e.target.value)}
               required
               placeholder="e.g. 2999"
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 font-mono"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 tabular font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-              Description / Memo
+            <label className="block text-xs text-slate-400 mb-1.5 font-medium">
+              Description / memo
             </label>
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="e.g. Monthly SaaS Subscription Invoice"
-              className="w-full rounded-xl border border-slate-700 bg-slate-800/80 px-3.5 py-2.5 text-sm text-white focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+              placeholder="e.g. Monthly SaaS subscription invoice"
+              className="w-full rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2.5 text-sm text-white focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-ink-border flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              className="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-ink-700 transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || customers.length === 0}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/30 transition disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm transition disabled:opacity-50"
             >
               {loading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Processing Order...
+                  <div className="w-4 h-4 border-2 border-ink-950 border-t-transparent rounded-full animate-spin"></div>
+                  Processing order...
                 </>
               ) : (
                 <>
                   <CreditCard className="w-4 h-4" />
-                  Proceed to Checkout
+                  Proceed to checkout
                   <ArrowRight className="w-4 h-4 ml-0.5" />
                 </>
               )}

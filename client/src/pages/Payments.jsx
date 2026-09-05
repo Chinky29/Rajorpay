@@ -10,16 +10,12 @@ import {
   CreditCard,
   Search,
   Plus,
-  Filter,
-  RefreshCw,
-  ExternalLink,
   ChevronRight,
-  Sparkles,
 } from 'lucide-react';
 
 export default function Payments() {
   const navigate = useNavigate();
-  const { success, error } = useToast();
+  const { error } = useToast();
 
   const [payments, setPayments] = useState([]);
   const [pagination, setPagination] = useState(null);
@@ -59,13 +55,13 @@ export default function Payments() {
       accessor: 'customer',
       render: (p) => (
         <div>
-          <div className="font-semibold text-white">{p.customer?.name || 'Customer'}</div>
+          <div className="font-medium text-white">{p.customer?.name || 'Customer'}</div>
           <div className="text-xs text-slate-400">{p.customer?.email}</div>
         </div>
       ),
     },
     {
-      header: 'Razorpay Reference',
+      header: 'Razorpay reference',
       accessor: 'razorpayOrderId',
       render: (p) => (
         <div className="font-mono text-xs">
@@ -78,7 +74,7 @@ export default function Payments() {
       header: 'Amount',
       accessor: 'amount',
       render: (p) => (
-        <span className="font-extrabold text-white font-mono text-sm">
+        <span className="font-semibold text-white tabular">
           {formatCurrency(p.amount, p.currency)}
         </span>
       ),
@@ -87,7 +83,7 @@ export default function Payments() {
       header: 'Method',
       accessor: 'method',
       render: (p) => (
-        <span className="text-xs uppercase font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded-lg border border-slate-700/60">
+        <span className="text-xs capitalize text-slate-300 bg-ink-700 px-2 py-0.5 rounded-lg border border-ink-border">
           {p.method}
         </span>
       ),
@@ -98,7 +94,7 @@ export default function Payments() {
       render: (p) => <Badge status={p.status} size="sm" />,
     },
     {
-      header: 'Created At',
+      header: 'Created at',
       accessor: 'createdAt',
       render: (p) => (
         <span className="text-xs text-slate-400 font-mono">
@@ -109,7 +105,7 @@ export default function Payments() {
     {
       header: '',
       className: 'text-right',
-      render: (p) => (
+      render: () => (
         <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-white transition" />
       ),
     },
@@ -119,17 +115,17 @@ export default function Payments() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Payments & Ledger</h1>
+          <h1 className="text-2xl font-bold text-white tracking-tight font-display">Payments & ledger</h1>
           <p className="text-sm text-slate-400 mt-0.5">
             Complete transaction ledger with Razorpay Orders, HMAC validation status, and audit trails
           </p>
         </div>
         <button
           onClick={() => setIsCheckoutOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/25 active:scale-95 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm active:scale-95 transition"
         >
           <Plus className="w-4 h-4" />
-          <span>New Transaction</span>
+          <span>New transaction</span>
         </button>
       </div>
 
@@ -145,7 +141,7 @@ export default function Payments() {
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border border-ink-border bg-ink-800 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500"
           />
         </div>
 
@@ -156,12 +152,12 @@ export default function Payments() {
               setStatusFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2 text-sm text-slate-300 focus:border-brand-500 focus:outline-none flex-1 lg:flex-initial"
+            className="rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2 text-sm text-slate-300 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 flex-1 lg:flex-initial"
           >
-            <option value="">All Statuses</option>
-            <option value="captured">Captured / Paid</option>
+            <option value="">All statuses</option>
+            <option value="captured">Captured / paid</option>
             <option value="failed">Failed</option>
-            <option value="created">Created (Pending)</option>
+            <option value="created">Created (pending)</option>
             <option value="authorized">Authorized</option>
             <option value="refunded">Refunded</option>
           </select>
@@ -172,9 +168,9 @@ export default function Payments() {
               setMethodFilter(e.target.value);
               setPage(1);
             }}
-            className="rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2 text-sm text-slate-300 focus:border-brand-500 focus:outline-none flex-1 lg:flex-initial"
+            className="rounded-lg border border-ink-border bg-ink-800 px-3.5 py-2 text-sm text-slate-300 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 flex-1 lg:flex-initial"
           >
-            <option value="">All Methods</option>
+            <option value="">All methods</option>
             <option value="card">Card</option>
             <option value="upi">UPI</option>
             <option value="netbanking">Net Banking</option>

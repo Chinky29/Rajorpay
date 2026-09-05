@@ -19,19 +19,19 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-950/85 backdrop-blur-sm animate-in fade-in duration-200">
       <div
         className="fixed inset-0"
         onClick={onClose}
       />
       <div
-        className={`relative z-10 w-full ${maxWidth} rounded-2xl border border-slate-800 bg-slate-900/95 p-6 shadow-2xl backdrop-blur-2xl animate-in zoom-in-95 duration-200`}
+        className={`relative z-10 w-full ${maxWidth} rounded-xl border border-ink-border bg-ink-900/95 p-6 shadow-2xl backdrop-blur-2xl animate-in zoom-in-95 duration-200`}
       >
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
-          <h3 className="text-lg font-bold text-white tracking-tight">{title}</h3>
+        <div className="flex items-center justify-between border-b border-ink-border pb-4 mb-5">
+          <h3 className="text-lg font-bold text-white tracking-tight font-display">{title}</h3>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-ink-800 transition"
           >
             <X className="w-5 h-5" />
           </button>

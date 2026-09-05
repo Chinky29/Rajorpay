@@ -5,12 +5,14 @@ export default function Badge({ children, variant, status, size = 'md' }) {
   const finalVariant = variant || (status ? getStatusBadgeVariant(status) : 'neutral');
 
   const variantStyles = {
-    success: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    danger: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-    warning: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    info: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
-    brand: 'bg-brand-500/10 text-brand-400 border-brand-500/20',
-    neutral: 'bg-slate-800 text-slate-300 border-slate-700',
+    success: 'bg-success-soft text-success border-success/20',
+    danger: 'bg-danger-soft text-danger border-danger/20',
+    warning: 'bg-warn-soft text-warn border-warn/20',
+    warn: 'bg-warn-soft text-warn border-warn/20',
+    info: 'bg-info-soft text-info border-info/20',
+    brand: 'bg-brass-500/10 text-brass-400 border-brass-500/20',
+    brass: 'bg-brass-500/10 text-brass-400 border-brass-500/20',
+    neutral: 'bg-ink-700 text-slate-300 border-ink-border',
   };
 
   const sizeStyles = {
@@ -19,14 +21,16 @@ export default function Badge({ children, variant, status, size = 'md' }) {
     lg: 'text-sm px-3 py-1.5',
   };
 
+  const isPending = status === 'created' || status === 'pending' || status === 'authorized' || status === 'paused';
+
   return (
     <span
-      className={`inline-flex items-center gap-1.5 font-medium rounded-full border capitalize ${
+      className={`inline-flex items-center gap-1.5 font-medium rounded-full border capitalize tracking-tight ${
         variantStyles[finalVariant] || variantStyles.neutral
       } ${sizeStyles[size]}`}
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80"></span>
-      {children || status}
+      <span className={`w-1.5 h-1.5 rounded-full bg-current ${isPending ? 'animate-ping opacity-75' : 'opacity-90'}`}></span>
+      <span>{children || status}</span>
     </span>
   );
 }

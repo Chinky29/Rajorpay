@@ -8,7 +8,7 @@ export default function Layout() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex">
+    <div className="min-h-screen bg-ink-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(201,162,93,0.05),rgba(10,12,16,0))] text-slate-100 flex relative overflow-x-hidden">
       {/* Desktop Sidebar */}
       <div className="hidden md:block">
         <Sidebar
@@ -21,7 +21,7 @@ export default function Layout() {
       {/* Mobile Drawer Backdrop */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-ink-950/80 backdrop-blur-sm md:hidden animate-in fade-in duration-200"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
@@ -43,7 +43,7 @@ export default function Layout() {
         }`}
       >
         <Header openMobile={() => setIsMobileOpen(true)} />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-in fade-in duration-150">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-in fade-in duration-200">
           <Outlet />
         </main>
       </div>

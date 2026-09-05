@@ -9,9 +9,6 @@ import {
   Copy,
   Check,
   Building,
-  User as UserIcon,
-  Mail,
-  Lock,
 } from 'lucide-react';
 
 export default function Settings() {
@@ -31,51 +28,51 @@ export default function Settings() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-          <SettingsIcon className="w-6 h-6 text-brand-400" />
-          Settings & Gateway Configuration
+        <h1 className="text-2xl font-bold text-white tracking-tight font-display flex items-center gap-2">
+          <SettingsIcon className="w-6 h-6 text-brass-400" />
+          Settings and gateway configuration
         </h1>
         <p className="text-sm text-slate-400 mt-0.5">
-          Manage your merchant profile, Razorpay Test Mode credentials, and webhook endpoints
+          Manage your merchant profile, Razorpay test mode credentials, and webhook endpoints
         </p>
       </div>
 
       {/* Business Profile */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/60 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
-        <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2 border-b border-slate-800 pb-4">
-          <Building className="w-4 h-4 text-brand-400" />
-          Merchant Business Profile
+      <div className="rounded-xl border border-ink-border bg-ink-800 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
+        <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-ink-border pb-4">
+          <Building className="w-4 h-4 text-brass-400" />
+          Merchant business profile
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] block font-semibold">
-              Business Name
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border">
+            <span className="text-slate-500 text-[11px] block font-medium">
+              Business name
             </span>
-            <span className="text-base font-bold text-white mt-1 block">
+            <span className="text-base font-semibold text-white mt-1 block font-display">
               {user?.businessName || 'PayFlow Merchant'}
             </span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] block font-semibold">
-              Administrator Name
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border">
+            <span className="text-slate-500 text-[11px] block font-medium">
+              Administrator name
             </span>
-            <span className="text-base font-bold text-white mt-1 block">{user?.name}</span>
+            <span className="text-base font-semibold text-white mt-1 block">{user?.name}</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] block font-semibold">
-              Account Email
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border">
+            <span className="text-slate-500 text-[11px] block font-medium">
+              Account email
             </span>
-            <span className="text-base font-bold text-white mt-1 block">{user?.email}</span>
+            <span className="text-base font-semibold text-white mt-1 block">{user?.email}</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-800/40 border border-slate-800">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] block font-semibold">
-              Role & Permissions
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border">
+            <span className="text-slate-500 text-[11px] block font-medium">
+              Role & permissions
             </span>
-            <span className="text-base font-bold text-brand-400 mt-1 block uppercase">
+            <span className="text-base font-semibold text-brass-400 mt-1 block capitalize">
               {user?.role || 'merchant'}
             </span>
           </div>
@@ -83,33 +80,33 @@ export default function Settings() {
       </div>
 
       {/* Razorpay Gateway Settings */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/60 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-            <Key className="w-4 h-4 text-emerald-400" />
-            Razorpay Test Mode Integration
+      <div className="rounded-xl border border-ink-border bg-ink-800 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
+        <div className="flex items-center justify-between border-b border-ink-border pb-4">
+          <h2 className="text-sm font-semibold text-white flex items-center gap-2">
+            <Key className="w-4 h-4 text-brass-400" />
+            Razorpay test mode integration
           </h2>
-          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            Test Mode Active
+          <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-success-soft text-success border border-success/20">
+            Test mode active
           </span>
         </div>
 
         <div className="space-y-4 text-xs">
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] font-semibold">
-              Key ID (Public)
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border space-y-1">
+            <span className="text-slate-500 text-[11px] font-medium">
+              Key ID (public)
             </span>
             <div className="font-mono text-sm text-slate-200">
               {import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_YourKeyIdHere'}
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1">
-            <span className="text-slate-500 uppercase tracking-wider text-[10px] font-semibold">
-              Key Secret (Server-Side)
+          <div className="p-4 rounded-lg bg-ink-900 border border-ink-border space-y-1">
+            <span className="text-slate-500 text-[11px] font-medium">
+              Key Secret (server-side)
             </span>
-            <div className="font-mono text-sm text-emerald-400 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4" />
+            <div className="font-mono text-sm text-success flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-success" />
               <span>Configured securely in backend environment (.env)</span>
             </div>
           </div>
@@ -117,10 +114,10 @@ export default function Settings() {
       </div>
 
       {/* Webhook Configuration */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/60 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
-        <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2 border-b border-slate-800 pb-4">
-          <Webhook className="w-4 h-4 text-sky-400" />
-          Razorpay Webhook Endpoint
+      <div className="rounded-xl border border-ink-border bg-ink-800 backdrop-blur-2xl p-6 sm:p-8 shadow-xl space-y-6">
+        <h2 className="text-sm font-semibold text-white flex items-center gap-2 border-b border-ink-border pb-4">
+          <Webhook className="w-4 h-4 text-info" />
+          Razorpay webhook endpoint
         </h2>
 
         <p className="text-xs text-slate-400 leading-relaxed">
@@ -129,7 +126,7 @@ export default function Settings() {
             href="https://dashboard.razorpay.com/app/webhooks"
             target="_blank"
             rel="noreferrer"
-            className="text-brand-400 underline font-semibold"
+            className="text-brass-400 underline font-semibold"
           >
             Razorpay Dashboard &rarr; Settings &rarr; Webhooks
           </a>{' '}
@@ -141,13 +138,13 @@ export default function Settings() {
             type="text"
             readOnly
             value={webhookUrl}
-            className="flex-1 font-mono text-xs text-white bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-3 focus:outline-none"
+            className="flex-1 font-mono text-xs text-white bg-ink-900 border border-ink-border rounded-lg px-4 py-3 focus:outline-none"
           />
           <button
             onClick={copyWebhook}
-            className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition"
+            className="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-ink-700 hover:bg-ink-600 text-white font-semibold text-xs border border-ink-border transition"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-success" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Copied' : 'Copy'}</span>
           </button>
         </div>

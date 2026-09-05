@@ -41,15 +41,13 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-600/15 rounded-full blur-3xl pointer-events-none" />
-
+    <div className="min-h-screen bg-ink-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 shadow-xl shadow-brand-500/25 mb-4">
-          <Layers className="w-6 h-6 text-white" />
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-ink-700 border border-brass-500/40 text-brass-400 shadow-xl mb-4">
+          <Layers className="w-6 h-6 text-brass-400" />
         </div>
-        <h2 className="text-3xl font-extrabold tracking-tight text-white">
-          Create PayFlow Account
+        <h2 className="text-3xl font-bold tracking-tight text-white font-display">
+          Create PayFlow account
         </h2>
         <p className="mt-2 text-sm text-slate-400">
           Get started with multi-tenant payment operations in minutes
@@ -57,11 +55,11 @@ export default function Register() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
-        <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl space-y-6">
+        <div className="rounded-xl border border-ink-border bg-ink-800 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl space-y-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Full Name
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Full name
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
@@ -74,14 +72,14 @@ export default function Register() {
                   onChange={handleChange}
                   required
                   placeholder="Sarah Connor"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/80 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-ink-border bg-ink-900 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Business Name
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Business name
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
@@ -94,14 +92,14 @@ export default function Register() {
                   onChange={handleChange}
                   required
                   placeholder="Acme Payments Pvt Ltd"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/80 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-ink-border bg-ink-900 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Work Email
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Work email
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
@@ -114,13 +112,13 @@ export default function Register() {
                   onChange={handleChange}
                   required
                   placeholder="sarah@business.com"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/80 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-ink-border bg-ink-900 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
                 Password
               </label>
               <div className="relative">
@@ -134,7 +132,7 @@ export default function Register() {
                   onChange={handleChange}
                   required
                   placeholder="Min 6 characters"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-700 bg-slate-800/80 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition font-mono"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-ink-border bg-ink-900 text-sm text-white placeholder-slate-500 focus:border-brass-500 focus:outline-none focus:ring-1 focus:ring-brass-500 transition font-mono"
                 />
               </div>
             </div>
@@ -142,23 +140,24 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/30 transition disabled:opacity-50 active:scale-95"
+              className="w-full mt-2 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-brass-500 hover:bg-brass-400 text-ink-950 font-semibold text-sm transition disabled:opacity-50 active:scale-95"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-ink-950 border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
-                  Create Account <ArrowRight className="w-4 h-4" />
+                  <span>Create account</span>
+                  <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </button>
           </form>
 
-          <div className="pt-4 border-t border-slate-800/80 text-center text-xs text-slate-400">
+          <div className="pt-4 border-t border-ink-border text-center text-xs text-slate-400">
             Already registered?{' '}
             <Link
               to="/login"
-              className="font-semibold text-brand-400 hover:text-brand-300 transition"
+              className="font-semibold text-brass-400 hover:text-brass-300 transition"
             >
               Sign in to your account
             </Link>
